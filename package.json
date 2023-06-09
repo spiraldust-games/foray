@@ -1,0 +1,50 @@
+{
+  "name": "foray",
+  "version": "0.0.1",
+  "description": "Foray is an extended interface for arrays",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "targets": {
+    "main": {
+      "optimize": true,
+      "source": "src/index.mjs",
+      "distDir": "dist/index.cjs"
+    },
+    "module": {
+      "source": "src/index.mjs",
+      "distDir": "dist/index.mjs"
+    }
+  },
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "build": "npm run lint && npm test && rimraf dist && parcel build --cache-dir .parcel-cache-build",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiraldust-games/foray.git"
+  },
+  "keywords": [
+    "array"
+  ],
+  "bugs": {
+    "url": "https://github.com/spiraldust-games/foray/issues"
+  },
+  "homepage": "https://github.com/spiraldust-games/foray#readme",
+  "author": "Phil Glanville",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.42.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "jest": "^29.5.0",
+    "parcel": "^2.9.2",
+    "rimraf": "^5.0.1"
+  }
+}

@@ -10,8 +10,8 @@ It is specifically designed NOT to be a class extension of arrays, and NOT to mu
 
 ## Installation
 
-```javascript
-npm install foray
+```bash
+npm install @spiraldust/foray
 ```
 
 ## Getting Started
@@ -19,13 +19,13 @@ npm install foray
 If you are using ES6...
 
 ```javascript
-import foray from '@spiraldust-games/foray';
+import foray from '@spiraldust/foray';
 ```
 
 This library is bundled using parcel however, so it also supports old methods:
 
 ```javascript
-const foray = require('@spiraldust-games/foray').default;
+const foray = require('@spiraldust/foray').default;
 ```
 
 ## Core Concepts
@@ -97,7 +97,7 @@ Foray is designed with extensibility in mind. While the core library only houses
 Below is an example of how you can extend Foray using plain JavaScript methods.
 
 ```javascript
-import { forayBase, foraySymbol } from '@spiraldust-games/foray';
+import { forayBase, foraySymbol } from '@spiraldust/foray';
 
 // Manual function extension
 forayBase.filterMapped = function(filterFn) {
@@ -119,7 +119,7 @@ import {
   cohesive,
   makeWithArg,
   withOutput
-} from '@spiraldust-games/foray';
+} from '@spiraldust/foray';
 
 const findMapped = fn(
   cohesive(

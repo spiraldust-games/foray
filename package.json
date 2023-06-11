@@ -16,11 +16,95 @@
     }
   },
   "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.cjs"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./atoms": {
+      "import": "./dist/atoms/index.mjs",
+      "require": "./dist/atoms/index.cjs"
+    },
+    "./atoms/*": {
+      "import": "./dist/atoms/*.mjs",
+      "require": "./dist/atoms/*.cjs"
+    },
+    "./decorators": {
+      "import": "./dist/decorators/index.mjs",
+      "require": "./dist/decorators/index.cjs"
+    },
+    "./decorators/*": {
+      "import": "./dist/decorators/*.mjs",
+      "require": "./dist/decorators/*.cjs"
+    },
+    "./enums": {
+      "import": "./dist/enums/index.mjs",
+      "require": "./dist/enums/index.cjs"
+    },
+    "./enums/*": {
+      "import": "./dist/enums/*.mjs",
+      "require": "./dist/enums/*.cjs"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.mjs",
+      "require": "./dist/hooks/index.cjs"
+    },
+    "./hooks/*": {
+      "import": "./dist/hooks/*.mjs",
+      "require": "./dist/hooks/*.cjs"
+    },
+    "./initialisers/*": {
+      "import": "./dist/initialisers/*.mjs",
+      "require": "./dist/initialisers/*.cjs"
+    },
+    "./methods": {
+      "import": "./dist/methods/index.mjs",
+      "require": "./dist/methods/index.cjs"
+    },
+    "./methods/*": {
+      "import": "./dist/methods/*.mjs",
+      "require": "./dist/methods/*.cjs"
+    },
+    "./operators": {
+      "import": "./dist/operators/index.mjs",
+      "require": "./dist/operators/index.cjs"
+    },
+    "./operators/*": {
+      "import": "./dist/operators/*.mjs",
+      "require": "./dist/operators/*.cjs"
+    }
   },
   "scripts": {
-    "build": "npm run lint && npm test && rimraf dist && parcel build --cache-dir .parcel-cache-build",
+    "methods-cjs-build": "babel src/methods --out-dir dist/methods --extensions \".mjs\" --source-maps --ignore \"**/*.test.mjs\"",
+    "methods-cjs-rename": "renamer --path-element ext --find js --replace cjs ./dist/methods/*",
+    "methods-mjs-copy": "cpy 'src/methods/**/*.mjs' '!src/methods/**/*.test.mjs' dist/methods --parents",
+    "atoms-cjs-build": "babel src/atoms --out-dir dist/atoms --extensions \".mjs\" --source-maps --ignore \"**/*.test.mjs\"",
+    "atoms-cjs-rename": "renamer --path-element ext --find js --replace cjs ./dist/atoms/*",
+    "atoms-mjs-copy": "cpy 'src/atoms/**/*.mjs' '!src/atoms/**/*.test.mjs' dist/atoms --parents",
+    "operators-cjs-build": "babel src/operators --out-dir dist/operators --extensions \".mjs\" --source-maps --ignore \"**/*.test.mjs\"",
+    "operators-cjs-rename": "renamer --path-element ext --find js --replace cjs ./dist/operators/*",
+    "operators-mjs-copy": "cpy 'src/operators/**/*.mjs' '!src/operators/**/*.test.mjs' dist/operators --parents",
+    "decorators-cjs-build": "babel src/decorators --out-dir dist/decorators --extensions \".mjs\" --source-maps --ignore \"**/*.test.mjs\"",
+    "decorators-cjs-rename": "renamer --path-element ext --find js --replace cjs ./dist/decorators/*",
+    "decorators-mjs-copy": "cpy 'src/decorators/**/*.mjs' '!src/decorators/**/*.test.mjs' dist/decorators --parents",
+    "enums-cjs-build": "babel src/enums --out-dir dist/enums --extensions \".mjs\" --source-maps --ignore \"**/*.test.mjs\"",
+    "enums-cjs-rename": "renamer --path-element ext --find js --replace cjs ./dist/enums/*",
+    "enums-mjs-copy": "cpy 'src/enums/**/*.mjs' '!src/enums/**/*.test.mjs' dist/enums --parents",
+    "hooks-cjs-build": "babel src/hooks --out-dir dist/hooks --extensions \".mjs\" --source-maps --ignore \"**/*.test.mjs\"",
+    "hooks-cjs-rename": "renamer --path-element ext --find js --replace cjs ./dist/hooks/*",
+    "hooks-mjs-copy": "cpy 'src/hooks/**/*.mjs' '!src/hooks/**/*.test.mjs' dist/hooks --parents",
+    "initialisers-cjs-build": "babel src/initialisers --out-dir dist/initialisers --extensions \".mjs\" --source-maps --ignore \"**/*.test.mjs\"",
+    "initialisers-cjs-rename": "renamer --path-element ext --find js --replace cjs ./dist/initialisers/*",
+    "initialisers-mjs-copy": "cpy 'src/initialisers/**/*.mjs' '!src/initialisers/**/*.test.mjs' dist/initialisers --parents",
+    "build-parcel": "parcel build --cache-dir .parcel-cache-build",
+    "build-methods": "npm run methods-cjs-build && npm run methods-cjs-rename && npm run methods-mjs-copy",
+    "build-atoms": "npm run atoms-cjs-build && npm run atoms-cjs-rename && npm run atoms-mjs-copy",
+    "build-operators": "npm run operators-cjs-build && npm run operators-cjs-rename && npm run operators-mjs-copy",
+    "build-decorators": "npm run decorators-cjs-build && npm run decorators-cjs-rename && npm run decorators-mjs-copy",
+    "build-enums": "npm run enums-cjs-build && npm run enums-cjs-rename && npm run enums-mjs-copy",
+    "build-hooks": "npm run hooks-cjs-build && npm run hooks-cjs-rename && npm run hooks-mjs-copy",
+    "build-initialisers": "npm run initialisers-cjs-build && npm run initialisers-cjs-rename && npm run initialisers-mjs-copy",
+    "build-folders": "npm run build-methods && npm run build-atoms && npm run build-operators && npm run build-decorators && npm run build-enums && npm run build-hooks && npm run build-initialisers",
+    "build": "npm test && rimraf dist && npm run build-parcel && npm run build-folders",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "lint": "eslint src",
     "prepublishOnly": "npm run build"
@@ -30,7 +114,8 @@
     "url": "git+https://github.com/spiraldust-games/foray.git"
   },
   "keywords": [
-    "array"
+    "array",
+    "functional"
   ],
   "bugs": {
     "url": "https://github.com/spiraldust-games/foray/issues"
@@ -39,12 +124,17 @@
   "author": "Phil Glanville",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "cpy-cli": "^4.2.0",
     "eslint": "^8.42.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest": "^27.2.1",
     "jest": "^29.5.0",
     "parcel": "^2.9.2",
+    "renamer": "^4.0.0",
     "rimraf": "^5.0.1"
   }
 }

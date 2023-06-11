@@ -11,7 +11,7 @@ It is specifically designed NOT to be a class extension of arrays, and NOT to mu
 ## Installation
 
 ```bash
-npm install @spiraldust/foray
+npm install foray
 ```
 
 ## Getting Started
@@ -19,14 +19,32 @@ npm install @spiraldust/foray
 If you are using ES6...
 
 ```javascript
-import foray from '@spiraldust/foray';
+import foray from 'foray';
 ```
 
-This library is bundled using parcel however, so it also supports old methods:
+If you are using older js...
 
 ```javascript
-const foray = require('@spiraldust/foray').default;
+const foray = require('foray').default;
 ```
+
+By default Foray just imports the code it needs to get set-up. This means running foray() against an array initially will actually return nothing but an empty object. If you want useful methods, you need to import them.
+
+```javascript
+import foray from 'foray';
+import 'foray/methods/findMapped';
+```
+
+or...
+
+```javascript
+const foray = require('foray').default;
+require('foray/methods/findMapped');
+```
+
+Foray automatically attaches these methods to its returned API. Operating this way means you can be specific about what exactly you are including into your logic.
+
+> **Please note:** due to Javascript's singleton nature — with regard to importing/requiring files. This means that every imported method will attach itself to foray(), even if you've imported these methods in separate files or contexts. Put simply, there is only one instance of foray().
 
 ## Core Concepts
 
@@ -92,62 +110,21 @@ The returned object for any array currently only contains one method:
 
 ## Extension
 
-Foray is designed with extensibility in mind. While the core library only houses one method, you can conveniently add your own custom methods to the `forayBase`. This can be achieved using plain JavaScript methods or by leveraging Foray's built-in `fn()` function.
+Foray is designed with extensibility in mind. While the core library only houses a few methods, you can conveniently add your own custom methods to the `forayBase`. This can be achieved using plain JavaScript methods or by leveraging Foray's built-in `fn()` function.
 
-Below is an example of how you can extend Foray using plain JavaScript methods.
+For more information, please see (here)[./extension.md].
 
-```javascript
-import { forayBase, foraySymbol } from '@spiraldust/foray';
+### Further detail
 
-// Manual function extension
-forayBase.filterMapped = function(filterFn) {
-  const array = this[foraySymbol];
-  // ... do what you want with your array here and return.
-}
-```
+There are readmes that cover each of the specific folders in this repo.
 
-Although the above approach works, you might want to create more complex methods. This is where Foray's `fn()` function becomes handy. This function allows you to create methods that consist of multiple atomic functions or "atoms", which are executed in sequence.
-
-Below is an example of how to create the `findMapped` method using the `fn()` function.
-
-```javascript
-import {
-  fn,
-  forayBase,
-  useMapper,
-  useEscape,
-  cohesive,
-  makeWithArg,
-  withOutput
-} from '@spiraldust/foray';
-
-const findMapped = fn(
-  cohesive(
-    makeWithArg(useMapper, 0),
-    withOutput(useEscape(v => v)),
-  ),
-);
-
-forayBase.findMapped = findMapped;
-```
-
-In this example, we create a new method `findMapped` that first applies a mapping function to the array elements (using `useMapper` atom), then checks each of these mapped elements against a condition (using `useEscape` atom). The atoms are brought together using the `cohesive` function which runs them in sequence, passing the output of one as input to the next.
-
-This style of building functions may seem familiar to those who have experience with functional programming. However, if this is new to you, let's break it down:
-
-1. `fn()` is a function that accepts a series of atoms. It returns a new function that, when invoked, executes these atoms in sequence.
-
-2. The `cohesive()` function is used to combine two or more atoms into a single unit. This is so that the atoms can be executed per array item together, rather than in-series with the first atom run against the entire array, and then the second atom against the entire array.
-
-3. `makeWithArg()` and `withOutput()` are examples of atom initialisers and decorators, respectively. Initialisers are used to initialise atoms during the runtime, while decorators modify the behaviour of an already initialised atom.
-
-This modular approach to building functions provides flexibility and promotes code reuse. With Foray, you can construct complex array methods by combining simple, single-purpose atoms.
-
-Take a look at the code, you will see that it is easy to create your own atoms, initialisers or decorators. Foray follows the following convention in terms of naming, but you are not bound to it:
-
-- `makeWith`: the prefix for an initialiser.
-- `with` : the prefix for a decorator.
-- `use` : the prefix for an atom.
+- [Methods](./methods/methods.md)
+- [Atoms](./atoms/atoms.md)
+- [Decorators](./hooks/decorators.md)
+- [Initialisers](./initialisers/initialisers.md)
+- [Operators](./operators/operators.md)
+- [Hooks](./hooks/hooks.md)
+- [Cursors](./cursors/cursors.md)
 
 ## Running Tests
 
@@ -159,17 +136,32 @@ npm test
 
 ## Running Build
 
-Foray is built using Parcel:
+Foray is built using Parcel and Babel:
 
 ```bash
 npm run build
 ```
 
-This will run the lint and the tests.
+This will run the lint and the tests. There is more detail about the build process to be found [here](./build.md).
 
 ## Contributing
 
 We welcome contributions to Foray! If you have an idea for an improvement, a bugfix, or a new feature, please open an issue to discuss it. We're grateful for your help in making Foray better.
+
+## With thanks to
+
+Foray would not be possible, built as it is, without all the hard work from:
+
+- Parcel
+- Babel
+- ESLint
+- Git and Github
+- Jest
+- renamer
+- rimraf
+- cpy-cli
+
+Thank you 🙇‍♀️
 
 ## License
 

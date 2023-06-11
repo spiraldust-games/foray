@@ -27,12 +27,13 @@ module.exports = {
     "no-underscore-dangle": 0,
     "no-continue": 0,
     "no-plusplus": 0,
+    "no-param-reassign": ["error", { "props": false } ],
     "grouped-accessor-pairs": 0,
     "class-methods-use-this": 0,
     "no-unused-vars": 1,
     "import/extensions": ["error", "always", {
       "js": "always",
       "mjs": "always"
-    }]
+    }],
   },
 };

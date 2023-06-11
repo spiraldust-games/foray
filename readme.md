@@ -119,13 +119,13 @@ For more information, please see (here)[./extension.md].
 
 There are readmes that cover each of the specific folders in this repo.
 
-- [Methods](./src/methods/methods.md)
-- [Atoms](./src/atoms/atoms.md)
-- [Decorators](./src/hooks/decorators.md)
-- [Initialisers](./src/initialisers/initialisers.md)
-- [Operators](./src/operators/operators.md)
-- [Hooks](./src/hooks/hooks.md)
-- [Cursors](./src/cursors/cursors.md)
+- [Methods](./methods.md)
+- [Atoms](./atoms.md)
+- [Decorators](./decorators.md)
+- [Initialisers](./initialisers.md)
+- [Operators](./operators.md)
+- [Hooks](./hooks.md)
+- [Cursors](./cursors.md)
 
 ## Running Tests
 

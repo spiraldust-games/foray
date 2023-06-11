@@ -38,4 +38,4 @@ reduceMapped[foraySymbol] = {
 };
 ```
 
-[Back to main README](../../readme.md)
+[Back to main README](./readme.md)

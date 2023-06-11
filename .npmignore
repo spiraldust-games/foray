@@ -11,3 +11,6 @@
 
 # include dist
 !/dist
+
+# ignore map files
+*.map

@@ -18,4 +18,4 @@ const myArray = ['x', 'y', 'z'];
 foray(myArray).myBespokeMethodAttachedToForayBase();
 ```
 
-[Back to main README](../../readme.md)
+[Back to main README](./readme.md)

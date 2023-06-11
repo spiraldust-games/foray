@@ -13,4 +13,4 @@ All atom functions are executed using `atom.call(cursor, item)` this means you h
 
 These methods allow to control the overall foray process.
 
-[Back to main README](../../readme.md)
+[Back to main README](../../../readme.md)

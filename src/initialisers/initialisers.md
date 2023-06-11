@@ -21,4 +21,4 @@ Here we pass an atom that is then initialised during runtime, accepting a partic
 
 Say we have a foray method called `doThisThing`, and we have an atom inside that method wrapped with `makeWithArg(someAtom, 0)`. When `doThisThing(123)` is run, the `someAtom` function will be initialised with `123` as its argument. `someAtom` will then return its function for dealing with array items. Then that function is used to process the array item.
 
-[Back to main README](../../readme.md)
+[Back to main README](../../../readme.md)

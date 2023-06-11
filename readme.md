@@ -104,9 +104,10 @@ Foray's API contains the following wrapper functions:
 
 ## API - Array Interface
 
-The returned object for any array currently only contains one method:
+The returned object for any array currently only contains a few methods:
 
 - `.findMapped`: Essentially a performant replacement for `.map().find()`.
+- `.reduceMapped`: A combined handler that `map()s` as it `reduce()s`.
 
 ## Extension
 
@@ -118,13 +119,13 @@ For more information, please see (here)[./extension.md].
 
 There are readmes that cover each of the specific folders in this repo.
 
-- [Methods](./methods/methods.md)
-- [Atoms](./atoms/atoms.md)
-- [Decorators](./hooks/decorators.md)
-- [Initialisers](./initialisers/initialisers.md)
-- [Operators](./operators/operators.md)
-- [Hooks](./hooks/hooks.md)
-- [Cursors](./cursors/cursors.md)
+- [Methods](./src/methods/methods.md)
+- [Atoms](./src/atoms/atoms.md)
+- [Decorators](./src/hooks/decorators.md)
+- [Initialisers](./src/initialisers/initialisers.md)
+- [Operators](./src/operators/operators.md)
+- [Hooks](./src/hooks/hooks.md)
+- [Cursors](./src/cursors/cursors.md)
 
 ## Running Tests
 

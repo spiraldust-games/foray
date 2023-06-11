@@ -104,7 +104,7 @@
     "build-hooks": "npm run hooks-cjs-build && npm run hooks-cjs-rename && npm run hooks-mjs-copy",
     "build-initialisers": "npm run initialisers-cjs-build && npm run initialisers-cjs-rename && npm run initialisers-mjs-copy",
     "build-folders": "npm run build-methods && npm run build-atoms && npm run build-operators && npm run build-decorators && npm run build-enums && npm run build-hooks && npm run build-initialisers",
-    "build": "npm test && rimraf dist && npm run build-parcel && npm run build-folders",
+    "build": "npm run lint && npm test && rimraf dist && npm run build-parcel && npm run build-folders",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "lint": "eslint src",
     "prepublishOnly": "npm run build"

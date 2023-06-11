@@ -1,40 +1,9 @@
-import {
-  useMapper, useEscape, makeWithArg, withOutput, cohesive,
-} from './forayAtomsAndHelpers.mjs';
-
-// used to attach the array to our returned API object
-export const foraySymbol = Symbol('foray');
-
-/**
- * The class just tracks the internal cursor used inside fn(). Atoms can use
- * this to alter the inputs and outputs, and to decide when we should return.
- */
-class ForayCursor {
-  constructor({ args = [], outputs = [] }) {
-    this.i = 0;
-    this.args = args;
-    this.outputs = outputs;
-    this.returnValue = undefined;
-    this.stopped = false;
-  }
-
-  getArg(n = 0) {
-    return this.args[n];
-  }
-
-  getOutput(n = this.i) {
-    return this.outputs[n];
-  }
-
-  setOutput(v, n = this.i) {
-    this.outputs[n] = v;
-  }
-
-  stopAndReturn(returnValue) {
-    this.returnValue = returnValue;
-    this.stopped = true;
-  }
-}
+/* eslint-disable no-unused-expressions */
+import isNotNull from './utils/isNotNull.mjs';
+import hookCategory from './enums/hookCategory.mjs';
+import triggerHooks from './hooks/triggerHooks.mjs';
+import ForayCursor from './cursors/ForayCursor.mjs';
+import foraySymbol from './enums/foraySymbol.mjs';
 
 /**
  * Allows to create a function that is designed to manipulate an array using
@@ -42,43 +11,45 @@ class ForayCursor {
  * @param {...function} atoms
  */
 export function fn(...atoms) {
-  return function _fn(...args) {
+  const method = function _fn(...args) {
     const array = this[foraySymbol];
-    const outputs = [];
-    const cursor = new ForayCursor({ args, outputs });
-    for (const atom of atoms) {
-      for (const [i, item] of Object.entries(array)) {
+    const cursor = new ForayCursor({
+      args,
+      atoms,
+      array,
+      entries: Object.entries(array),
+      outputs: [],
+    });
+
+    triggerHooks(method, hookCategory.BEFORE_ALL, cursor);
+    for (const atom of cursor.atoms) {
+      triggerHooks(method, hookCategory.BEFORE, cursor);
+      for (const [i, item] of cursor.entries) {
         cursor.i = i;
-        outputs[i] = atom.call(cursor, item);
+        cursor.item = item;
+        cursor.outputs[i] = atom.call(cursor, item);
         if (cursor.stopped) {
           break;
         }
       }
+      triggerHooks(method, hookCategory.AFTER, cursor);
+      isNotNull(cursor.outputStart) && cursor.clearOutputsBefore(cursor.outputStart);
+      isNotNull(cursor.outputEnd) && cursor.clearOutputsBefore(cursor.outputEnd);
+      cursor.entries = Object.entries(cursor.outputs);
       if (cursor.stopped) {
         break;
       }
     }
+    triggerHooks(method, hookCategory.AFTER_ALL, cursor);
 
     return cursor.returnValue;
   };
+
+  return method;
 }
 
-/**
- * findMapped - allows you to find() that also map()s, but will be more
- * efficient than running `[].map(x).find(x)` for finds that occure before the
- * end of the array, because it maps as it goes.
- * @param {function} mapFn - this will be the map function, on returning a
- *  truthy value, the processing will stop, and the result returned.
- */
-const findMapped = fn(
-  cohesive(
-    makeWithArg(useMapper, 0),
-    withOutput(useEscape(v => v)),
-  ),
-);
-
 // you can extend this base to add your own methods
-export const forayBase = { findMapped };
+export const forayBase = {};
 
 // you can add items here that will be directly added to the foray instance
 export const forayMixin = {

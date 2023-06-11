@@ -1,4 +1,5 @@
 import foray, { forayWeakCache, forayProxy } from './forayNode.mjs';
+import './methods/findMapped.mjs';
 
 describe('foray', () => {
   describe('findMapped', () => {

@@ -9,6 +9,5 @@ forayBundle.forayMixin[forayInspectSymbol] = function inspect(_depth, opts) {
   return `Foray ${util.inspect(array, opts)}`;
 };
 
-// re-export
 export default forayBundle.default;
 export * from './foray.mjs';

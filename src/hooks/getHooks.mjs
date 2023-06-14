@@ -1,7 +1,7 @@
-import foraySymbol from '../enums/foraySymbol.mjs';
+import getFromForay from '../utils/getFromForay.mjs';
 
 export default function getHooks(method, hookCategoryName = undefined) {
-  const methodExtension = method[foraySymbol] || {};
+  const methodExtension = getFromForay(method) || {};
   const { hooks } = methodExtension;
 
   if (!hooks) return undefined;

@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-expressions */
-import isNotNull from './utils/isNotNull.mjs';
-import hookCategory from './enums/hookCategory.mjs';
-import triggerHooks from './hooks/triggerHooks.mjs';
 import ForayCursor from './cursors/ForayCursor.mjs';
 import foraySymbol from './enums/foraySymbol.mjs';
+import getFromForay from './utils/getFromForay.mjs';
+import hookCategory from './enums/hookCategory.mjs';
+import isNotNull from './utils/isNotNull.mjs';
+import triggerHooks from './hooks/triggerHooks.mjs';
+import setToForay from './utils/setToForay.mjs';
+
+export const getForaySymbol = () => foraySymbol;
 
 /**
  * Allows to create a function that is designed to manipulate an array using
@@ -12,7 +16,7 @@ import foraySymbol from './enums/foraySymbol.mjs';
  */
 export function fn(...atoms) {
   const method = function _fn(...args) {
-    const array = this[foraySymbol];
+    const array = getFromForay(this);
     const cursor = new ForayCursor({
       args,
       atoms,
@@ -54,7 +58,7 @@ export const forayBase = {};
 // you can add items here that will be directly added to the foray instance
 export const forayMixin = {
   toString() {
-    const array = this[foraySymbol];
+    const array = getFromForay(this);
 
     return `Foray [${array}]`;
   },
@@ -71,7 +75,7 @@ export const forayMixin = {
  */
 export default function foray(array) {
   const forayInstance = Object.create(forayBase);
-  forayInstance[foraySymbol] = array;
+  setToForay(forayInstance, array);
 
   // support mixed in properties
   Object.assign(forayInstance, forayMixin);
@@ -106,21 +110,22 @@ export function forayProxy(array) {
   const forayInstance = foray(array);
   const proxy = new Proxy(forayInstance, {
     get(target, prop, receiver) {
+      const array = getFromForay(target);
       if (prop in target) {
         return Reflect.get(target, prop, receiver);
       }
 
       const isNumericKey = typeof prop === 'string' && !Number.isNaN(parseInt(prop, base10));
       if (isNumericKey) {
-        return target[foraySymbol][prop];
+        return array[prop];
       }
 
-      const hasProp = prop in target[foraySymbol];
-      const value = hasProp && target[foraySymbol][prop];
+      const hasProp = prop in array;
+      const value = hasProp && array[prop];
       const isFunction = value && value.bind;
 
       if (isFunction) {
-        return target[foraySymbol][prop].bind(target[foraySymbol]);
+        return array[prop].bind(array);
       }
 
       if (value !== undefined) {
@@ -130,12 +135,12 @@ export function forayProxy(array) {
       return undefined;
     },
     ownKeys(target) {
-      const array = target[foraySymbol];
+      const array = getFromForay(target);
 
       return Reflect.ownKeys(array);
     },
     getOwnPropertyDescriptor(target, prop) {
-      const array = target[foraySymbol];
+      const array = getFromForay(target);
 
       if (prop in target || typeof prop === 'symbol') {
         return Reflect.getOwnPropertyDescriptor(target, prop);

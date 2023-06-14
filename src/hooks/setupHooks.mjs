@@ -1,16 +1,17 @@
-import foraySymbol from '../enums/foraySymbol.mjs';
+import getFromForay from '../utils/getFromForay.mjs';
 import hookCategory from '../enums/hookCategory.mjs';
+import setToForay from '../utils/setToForay.mjs';
 
 /**
  * Extend a method created by `fn()` to have hooks.
  * @param {function} method
  */
 export default function setupHooks(method) {
-  if (!method[foraySymbol]) {
-    method[foraySymbol] = {};
+  if (!getFromForay(method)) {
+    setToForay(method, {});
   }
 
-  const methodExtension = method[foraySymbol];
+  const methodExtension = getFromForay(method);
 
   if (!methodExtension.hooks) {
     methodExtension.hooks = {};

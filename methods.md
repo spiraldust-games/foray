@@ -9,7 +9,7 @@ However, you can also create and attach your own standard js methods.
 The key rule when doing that is that you must:
 
 - create your method as a `function` not an () => arrow.
-- you must access the array you are manipulating via `this[foraySymbol]`.
+- you must access the array you are manipulating via `this[foraySymbol]` or `getFromForay(this)` or `setToForay(this, value)`.
 
 Once created you just need to attach that method to `forayBase` for it to be callable by the foray API. E.g.
 

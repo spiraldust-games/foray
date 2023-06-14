@@ -5,10 +5,10 @@ Foray is designed with extensibility in mind. While the core library only houses
 Below is an example of how you can extend Foray using plain JavaScript methods.
 
 ```javascript
-import { forayBase, foraySymbol } from 'foray';
+import { forayBase, getFromForay } from 'foray';
 
 forayBase.filterMapped = function(filterFn) {
-  const array = this[foraySymbol];
+  const array = getFromForay(this);
   // ... do what you want with your array here and return.
 }
 ```

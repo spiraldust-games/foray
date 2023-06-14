@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-expressions */
 import ForayCursor from './cursors/ForayCursor.mjs';
 import foraySymbol from './enums/foraySymbol.mjs';
-import getFromForay from './utils/getFromForay.mjs';
+import getFromForay_ from './utils/getFromForay.mjs';
 import hookCategory from './enums/hookCategory.mjs';
 import isNotNull from './utils/isNotNull.mjs';
 import triggerHooks from './hooks/triggerHooks.mjs';
-import setToForay from './utils/setToForay.mjs';
+import setToForay_ from './utils/setToForay.mjs';
 
+// we need to re-export to get around a weird parcel bug
+export const getFromForay = (wrapper) => getFromForay_(wrapper);
+export const setToForay = (wrapper, value) => setToForay_(wrapper, value);
 export const getForaySymbol = () => foraySymbol;
 
 /**

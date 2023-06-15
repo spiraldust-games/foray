@@ -25,11 +25,17 @@ forayBase.getReversed = function(n) {
 };
 ```
 
-Once created you just need to attach that method to `forayBase` for it to be callable by the foray API. E.g.
+Once created you just need to attach that method to `forayBase` for it to be callable by the foray API.
+
+E.g.
 
 ```javascript
 const myArray = ['x', 'y', 'z'];
-foray(myArray).myBespokeMethodAttachedToForayBase();
+foray(myArray).getReversed(0); // 'z'
+foray(myArray).getReversed(1); // 'y'
 ```
+
+The example above is too trivial for building via `fn()` but suits creating as a simple extension method. To learn about how to use `fn()` however, please see the [Extension](./extension.md) section.
+
 
 [Back to main README](./readme.md)

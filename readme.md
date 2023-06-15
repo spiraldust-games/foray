@@ -113,7 +113,7 @@ The returned object for any array currently only contains a few methods:
 
 Foray is designed with extensibility in mind. While the core library only houses a few methods, you can conveniently add your own custom methods to the `forayBase`. This can be achieved using plain JavaScript methods or by leveraging Foray's built-in `fn()` function.
 
-For more information, please see (here)[./extension.md].
+For more information, please see [here](./extension.md).
 
 ### Further detail
 

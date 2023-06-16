@@ -1,5 +1,7 @@
 /**
- * Combine more than one atom together.
+ * Combine more than one atom together, similar to `pipe()`, but making sure to
+ * manage outputs as we go.
+ *
  * @param {...function} atoms
  */
 export default function cohesive(...atoms) {

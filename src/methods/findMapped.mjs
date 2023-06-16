@@ -1,6 +1,5 @@
 import { fn, forayBase } from '../index.mjs';
 import cohesive from '../operators/cohesive.mjs';
-import withOutput from '../decorators/withOutput.mjs';
 import makeWithArg from '../initialisers/makeWithArg.mjs';
 import useEscape from '../atoms/useEscape.mjs';
 import useMapper from '../atoms/useMapper.mjs';
@@ -15,7 +14,7 @@ import useMapper from '../atoms/useMapper.mjs';
 const findMapped = fn(
   cohesive(
     makeWithArg(useMapper, 0),
-    withOutput(useEscape(v => v)),
+    useEscape(v => v),
   ),
 );
 

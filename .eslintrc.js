@@ -20,6 +20,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    "no-mixed-operators": 0,
     "arrow-parens": 0,
     "no-shadow": 0,
     "max-len": 0,

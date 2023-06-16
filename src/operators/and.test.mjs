@@ -1,4 +1,4 @@
-import and from './and';
+import and from './and.mjs';
 
 describe('and', () => {
   it('should return true when all functions return true', () => {

@@ -26,6 +26,4 @@ export default function or(...fns) {
  * @param {object} params
  * @param {function} [params.isTruthyFn] - defaults to (v => !!v)
  */
-or.configure = ({ isTruthyFn } = {}) => {
-  return or.bind({ isTruthyFn });
-};
+or.configure = ({ isTruthyFn } = {}) => or.bind({ isTruthyFn });

@@ -26,6 +26,4 @@ export default function and(...fns) {
  * @param {object} params
  * @param {function} [params.isTruthyFn] - defaults to (v => !!v)
  */
-and.configure = ({ isTruthyFn } = {}) => {
-  return and.bind({ isTruthyFn });
-};
+and.configure = ({ isTruthyFn } = {}) => and.bind({ isTruthyFn });

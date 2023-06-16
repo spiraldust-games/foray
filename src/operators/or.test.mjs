@@ -1,5 +1,5 @@
-import { jest } from '@jest/globals';
-import or from './or';
+import { jest } from '@jest/globals'; // eslint-disable-line import/no-extraneous-dependencies
+import or from './or.mjs';
 
 describe('operators > or', () => {
   it('should return true when at least one function returns true', () => {

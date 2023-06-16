@@ -40,6 +40,4 @@ export default function pipeWhile(...fns) {
  * @param {object} params
  * @param {function} [params.isTruthyFn] - defaults to (v => !!v)
  */
-pipeWhile.configure = ({ isTruthyFn } = {}) => {
-  return pipeWhile.bind({ isTruthyFn });
-};
+pipeWhile.configure = ({ isTruthyFn } = {}) => pipeWhile.bind({ isTruthyFn });

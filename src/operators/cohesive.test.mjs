@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals';
+import { jest } from '@jest/globals'; // eslint-disable-line import/no-extraneous-dependencies
 import cohesive from './cohesive.mjs';
 
 describe('cohesive', () => {
@@ -30,7 +30,7 @@ describe('cohesive', () => {
     cohesiveFn.call(context, 1);
 
     expect(context.setOutput).toHaveBeenCalledTimes(2);
-    expect(context.setOutput).toHaveBeenNthCalledWith(1, 3);  // 1 + 2
-    expect(context.setOutput).toHaveBeenNthCalledWith(2, 6);  // 3 + 3
+    expect(context.setOutput).toHaveBeenNthCalledWith(1, 3); // 1 + 2
+    expect(context.setOutput).toHaveBeenNthCalledWith(2, 6); // 3 + 3
   });
 });

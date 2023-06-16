@@ -6,7 +6,7 @@ export default function cohesive(...atoms) {
   return function _cohesive(item) {
     return atoms.reduce((result, atomFn) => {
       const output = atomFn.call(this, result);
-      this.setOutput(output);
+      this && this.setOutput(output);
 
       return output;
     }, item);

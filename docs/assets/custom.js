@@ -16,7 +16,7 @@ window.CSS.registerProperty({
   initialValue: 0,
 });
 
-CSS.paintWorklet.addModule('./assets/starfield-worklet.js?44444');
+CSS.paintWorklet.addModule('./assets/starfield-worklet.js');
 
 if (body) {
   const m = 500;

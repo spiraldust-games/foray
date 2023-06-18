@@ -68,8 +68,8 @@ export const forayMixin = {
 };
 
 /**
- * foray is an enhancement for arrays... ged'it? Call it around an array and
- * it will return an interface with enhanced methods for that array.
+ * Pass this an array and it will return an interface with enhanced
+ * methods for that array.
  * @param {array} array
  * @example
  *   const lookup = { c: 'you found me' };

@@ -5,7 +5,7 @@ import useEscape from '../atoms/useEscape.mjs';
 import useMapper from '../atoms/useMapper.mjs';
 
 /**
- * findMapped - allows you to find() that also map()s, but will be more
+ * findMapped - allows you to `find()` that also `map()s`, but will be more
  * efficient than running `[].map(x).find(x)` for finds that occur before the
  * end of the array, because it maps as it goes.
  * @param {function} mapFn - this will be the map function, on returning a

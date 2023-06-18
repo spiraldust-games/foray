@@ -1,0 +1,45 @@
+toc:
+  - name: Foray
+    description: |
+      Foray _/fɔːr əˈreɪ/_ _n._ _informal_
+
+      1. A venture or initiative to alter the manner in which individuals and systems organize, manage, and interact with lists n' stuff.
+  - foray
+  - forayProxy
+  - forayWeakCache
+  - fn
+  - name: Atoms
+    description: Atoms are simple functions that can be combined to make more complicated logic.
+  - useLog
+  - useEscape
+  - useMapper
+  - useReducer
+  - useSlice
+  - name: Initialisers
+    description: Initialisers are used to construct atoms during a foray method execution, rather than before. This allows atoms to receive parameters at runtime.
+  - makeWithArg
+  - name: Decorators
+    description: Whilst only a slight distinction, decorator atoms are similar to [atoms](#atoms), but their purpose is to modify the behaviour of existing atoms.
+  - withLog
+  - withOutput
+  - name: Cursors
+    description: Cursors are what allows `fn()` to navigate around the atoms it needs to process. The default cursor is designed to handle stopping the process early and controlling inputs and outputs.
+  - ForayCursor
+  - name: Hooks
+    description: Hooks allow triggering functions before and after array processing.
+  - setupHooks
+  - triggerHooks
+  - name: Operators
+    description: Operators allow for conditional processing of atoms.
+  - and
+  - cohesive
+  - or
+  - pipe
+  - pipeWhile
+  - name: API Methods
+    description: These are the methods that can be returned by a call to `foray([])`
+  - findMapped
+  - get
+  - getReversed
+  - reduceMapped
+  - set

@@ -127,7 +127,7 @@
   "bugs": {
     "url": "https://github.com/spiraldust-games/foray/issues"
   },
-  "homepage": "https://github.com/spiraldust-games/foray#readme",
+  "homepage": "https://spiraldust-games.github.io/foray",
   "author": "Phil Glanville",
   "license": "MIT",
   "devDependencies": {

@@ -44,6 +44,8 @@ require('foray/methods/findMapped');
 
 Foray automatically attaches these methods to its returned API. Operating this way means you can be specific about what exactly you are including into your logic.
 
+You can find the API Documentation [here](https://spiraldust-games.github.io/foray/).
+
 > **Please note:** due to Javascript's singleton nature — with regard to importing/requiring files. This means that every imported method will attach itself to foray(), even if you've imported these methods in separate files or contexts. Put simply, there is only one instance of foray().
 
 ## Core Concepts

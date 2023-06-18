@@ -104,10 +104,17 @@
     "build-hooks": "npm run hooks-cjs-build && npm run hooks-cjs-rename && npm run hooks-mjs-copy",
     "build-initialisers": "npm run initialisers-cjs-build && npm run initialisers-cjs-rename && npm run initialisers-mjs-copy",
     "build-folders": "npm run build-methods && npm run build-atoms && npm run build-operators && npm run build-decorators && npm run build-enums && npm run build-hooks && npm run build-initialisers",
-    "build": "npm run lint && npm test && rimraf dist && npm run build-parcel && npm run build-folders",
+    "build": "npm run lint && npm test && rimraf dist && npm run build-parcel && npm run build-folders && npm run docs",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "lint": "eslint src",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "build-docs": "documentation build -f html -o docs src/**/*.mjs --config documentation.yml",
+    "build-docs--copy-css": "cpy 'docs-patch/*.*' docs/assets/",
+    "build-docs--inject-css": "replace-in-file '</head>' '  <link href=\"assets/custom.css\" rel=\"stylesheet\">\n</head>' docs/index.html",
+    "build-docs--inject-js": "replace-in-file '</body>' '  <script src=\"assets/cc-paint-polyfill.js\"></script>\n  <script src=\"assets/custom.js\"></script>\n</body>' docs/index.html",
+    "build-docs--fix-split": "replace-in-file 'sizes: [33, 67]' 'sizes: [15, 85]' docs/assets/site.js",
+    "docs": "npm run build-docs && npm run build-docs--copy-css && npm run build-docs--inject-css && npm run build-docs--inject-js && npm run build-docs--fix-split",
+    "serve-docs": "http-server -S -C ./dev/cert.pem -K ./dev/key.pem docs"
   },
   "repository": {
     "type": "git",
@@ -129,13 +136,16 @@
     "@babel/preset-env": "^7.22.5",
     "@jest/globals": "^29.5.0",
     "cpy-cli": "^4.2.0",
+    "documentation": "^14.0.2",
     "eslint": "^8.42.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest": "^27.2.1",
+    "http-server": "^14.1.1",
     "jest": "^29.5.0",
     "parcel": "^2.9.2",
     "renamer": "^4.0.0",
+    "replace-in-file": "^7.0.1",
     "rimraf": "^5.0.1"
   }
 }

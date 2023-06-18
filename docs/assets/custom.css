@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,100;1,700&display=swap');
+
+html {
+  --starfieldStars: 3881;
+  --starfieldOffset: 0;
+}
+
+.caps { letter-spacing: 0em; }
+
+h2 { color: #fff; }
+
+#split-right .keyline-top-not h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 100;
+}
+
+#split-right .keyline-top-not p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: #fff;
+  max-width: 800px;
+}
+
+#split-left .mb1 code { overflow: hidden; padding: 1em; }
+
+#split-left a:not(.h5) {
+  color: #8799ab;
+}
+
+.documentation #split-left h3 {
+  color: #fff;
+}
+
+.documentation {
+  background: #272731;
+  background-image: paint(starfield);
+}
+
+#filter-input {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.gutter.gutter-horizontal {
+  background-color: transparent;
+}
+
+.keyline-top-not section {
+  margin-left: 1em;
+}
+
+.minishadow {
+  border-radius: 1em 0 0 1em;
+  background: #e0e0e0;
+  box-shadow: none;
+  margin-left: 1em;
+  padding: 4em;
+  border: 1px solid #fff;
+}
+
+.fill-light {
+  border-radius: 0.4em;
+  background: #ebeaea;
+  padding: 1em;
+}
+
+.mb2 {
+  margin-bottom: 2em;
+}
+
+.h5.bold.black.caps {
+  color: #fff;
+}
+
+#foray-2 {
+  display: none;
+}
+
+#split-left .mb1 {
+  position: fixed;
+  top: 0;
+  right: 0;
+}

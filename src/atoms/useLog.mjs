@@ -2,6 +2,7 @@
 /**
  * `useLog` simply logs the current item and then returns it.
  * This can be useful for debugging.
+ * @param {object} params
  * @param {string} [params.prefix = '']
  * @param {string} [params.suffix = '']
  */

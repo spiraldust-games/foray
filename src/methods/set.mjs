@@ -2,7 +2,8 @@ import { forayBase, getFromForay } from '../index.mjs';
 
 /**
  * set - simple offset setter.
- * @param {function} mapFn
+ * @param {number} key
+ * @param {any} value
  */
 function set(key, value) {
   const isKey = typeof key === 'number' && key >= 0;

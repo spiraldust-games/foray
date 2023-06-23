@@ -1,8 +1,16 @@
 /**
- * The class just tracks the internal cursor used inside fn(). Atoms can use
+ * The class just tracks the internal cursor used inside `fn()`. Atoms can use
  * this to alter the inputs and outputs, and to decide when we should return.
  */
 export default class ForayCursor {
+  /**
+   * @param {object} $0 - a params wrapper
+   * @param {array} $0.atoms - the atoms being processed by `fn`
+   * @param {array} $0.array - the array being worked on
+   * @param {array} $0.entries - the entries calculated from array
+   * @param {array} [$0.args=[]] - arguments passed into the runtime method
+   * @param {array} [$0.outputs=[]] - the calculated outputs as we go
+   */
   constructor({
     args = [], atoms, array, entries, outputs = [],
   }) {

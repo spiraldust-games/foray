@@ -2,12 +2,12 @@ import { forayBase, getFromForay } from '../index.mjs';
 
 /**
  * get - simple offset getter.
- * @param {function} mapFn
+ * @param {number} [offset=0]
  */
-function get(n = 0) {
+function get(offset = 0) {
   const array = getFromForay(this);
 
-  return array[n];
+  return array[offset];
 }
 
 export default get;

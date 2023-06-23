@@ -110,10 +110,11 @@
     "prepublishOnly": "npm run build",
     "build-docs": "documentation build -f html -o docs src/**/*.mjs --config documentation.yml",
     "build-docs--copy-css": "cpy 'docs-patch/*.*' docs/assets/",
-    "build-docs--inject-css": "replace-in-file '</head>' '  <link href=\"assets/custom.css\" rel=\"stylesheet\">\n</head>' docs/index.html",
+    "build-docs--inject-css": "replace-in-file '</head>' '  <link href=\"assets/custom.css\" rel=\"stylesheet\">\n<link rel=\"icon\" type=\"image/png\" href=\"assets/favicon.png\">\n</head>' docs/index.html",
     "build-docs--inject-js": "replace-in-file '</body>' '  <script src=\"assets/css-paint-polyfill.js\"></script>\n  <script src=\"assets/custom.js\"></script>\n</body>' docs/index.html",
     "build-docs--fix-split": "replace-in-file 'sizes: [33, 67]' 'sizes: [15, 85]' docs/assets/site.js",
-    "docs": "npm run build-docs && npm run build-docs--copy-css && npm run build-docs--inject-css && npm run build-docs--inject-js && npm run build-docs--fix-split",
+    "build-docs--fix-zero": "replace-in-file '/\\$0/g' 'params' docs/index.html --isRegex",
+    "docs": "npm run build-docs && npm run build-docs--copy-css && npm run build-docs--inject-css && npm run build-docs--inject-js && npm run build-docs--fix-split && npm run build-docs--fix-zero",
     "serve-docs": "http-server -S -C ./dev/cert.pem -K ./dev/key.pem docs"
   },
   "repository": {

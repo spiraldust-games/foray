@@ -27,6 +27,11 @@ toc:
   - ForayCursor
   - name: Hooks
     description: Hooks allow triggering functions before and after array processing.
+  - addAfterAllHook
+  - addAfterHook
+  - addBeforeAllHook
+  - addBeforeHook
+  - getHooks
   - setupHooks
   - triggerHooks
   - name: Operators

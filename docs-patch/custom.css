@@ -9,14 +9,29 @@ html {
 
 h2 { color: #fff; }
 
+#split-right .intro::before {
+  display: block;
+  content: '';
+  width: 178px;
+  height: 178px;
+  float: right;
+  background: url('./favicon.png') no-repeat;
+  background-position: center center;
+  background-size: 178px 178px;
+  margin-left: 1em;
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
 #split-right .keyline-top-not h2 {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 100;
 }
 
-#split-right .keyline-top-not p {
+#split-right .keyline-top-not p,
+#split-right .keyline-top-not ol {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
+  font-size: 14px;
   color: #fff;
   max-width: 800px;
 }

@@ -34,14 +34,17 @@ export function fn(...atoms) {
       for (const [i, item] of cursor.entries) {
         cursor.i = i;
         cursor.item = item;
-        cursor.outputs[i] = atom.call(cursor, item);
+        const result = atom.call(cursor, item);
+        if (result !== undefined) {
+          cursor.outputs[i] = result;
+        }
         if (cursor.stopped) {
           break;
         }
       }
       triggerHooks(method, hookCategory.AFTER, cursor);
       isNotNull(cursor.outputStart) && cursor.clearOutputsBefore(cursor.outputStart);
-      isNotNull(cursor.outputEnd) && cursor.clearOutputsBefore(cursor.outputEnd);
+      isNotNull(cursor.outputEnd) && cursor.clearOutputsAfter(cursor.outputEnd);
       cursor.entries = Object.entries(cursor.outputs);
       if (cursor.stopped) {
         break;
@@ -55,7 +58,7 @@ export function fn(...atoms) {
   return method;
 }
 
-// you can extend this base to add your own methods
+// you can extend this base to add your own methods to the prototype
 export const forayBase = {};
 
 // you can add items here that will be directly added to the foray instance
@@ -72,9 +75,9 @@ export const forayMixin = {
  * methods for that array.
  * @param {array} array
  * @example
- *   const lookup = { c: 'you found me' };
- *   const result = foray(['a', 'b', 'c']).findMapped((key) => lookup[key]);
- *   console.log(result); // 'you found me';
+ * const lookup = { c: 'you found me' };
+ * const result = foray(['a', 'b', 'c']).findMapped((key) => lookup[key]);
+ * console.log(result); // 'you found me';
  */
 export default function foray(array) {
   const forayInstance = Object.create(forayBase);
@@ -96,17 +99,17 @@ export default function foray(array) {
  * Wraps the passed array in a Proxy, returning an object that can be used just
  * like the original array, but with added methods provided by foray.
  *
- * @param {Array} array - The array to wrap in a foray proxy.
- * @returns {Object} A Proxy object that behaves like the array, but with
+ * @param {array} array - The array to wrap in a foray proxy.
+ * @returns {object} A Proxy object that behaves like the array, but with
  *     added foray methods.
  *
  * @example
- *     const array = foray([1, 2, 3, 4]);
- *     array.push(5); // you can use standard array methods
- *     const output = array.findMapped((v) => { // ...and foray ones
- *         if (v * 2 === 8) return { found: true };
- *     });
- *     console.log(output); // { found: true }
+ * const array = foray([1, 2, 3, 4]);
+ * array.push(5); // you can use standard array methods
+ * const output = array.findMapped((v) => { // ...and foray ones
+ *   if (v * 2 === 8) return { found: true };
+ * });
+ * console.log(output); // { found: true }
  */
 export function forayProxy(array) {
   const base10 = 10;
@@ -170,21 +173,21 @@ export function forayProxy(array) {
  * instance from the WeakMap, instead of creating a new one. This provides a
  * performance optimization for repeat calls with the same array.
  *
- * @param {Array} array - The array to wrap in a foray object.
- * @returns {Object} A foray object. If the same array has been passed before,
+ * @param {array} array - The array to wrap in a foray object.
+ * @returns {object} A foray object. If the same array has been passed before,
  *     the previous foray object will be returned.
  *
  * @example
- *     const array = [1, 2, 3, 4];
- *     // each time you want access to foray methods, just wrap the array
- *     const output1 = foray(array).findMapped((v) => {
- *         if (v * 2 === 8) return { found: 8 };
- *     });
- *     const output2 = foray(array).findMapped((v) => {
- *         if (v * 2 === 6) return { found: 6 };
- *     });
- *     console.log(output1); // { found: 8 }
- *     console.log(output2); // { found: 6 }
+ * const array = [1, 2, 3, 4];
+ * // each time you want access to foray methods, just wrap the array
+ * const output1 = foray(array).findMapped((v) => {
+ *   if (v * 2 === 8) return { found: 8 };
+ * });
+ * const output2 = foray(array).findMapped((v) => {
+ *   if (v * 2 === 6) return { found: 6 };
+ * });
+ * console.log(output1); // { found: 8 }
+ * console.log(output2); // { found: 6 }
  */
 export function forayWeakCache(array) {
   if (forayWeakCache.cache.has(array)) {

@@ -1,6 +1,6 @@
 /**
- * `useEscape` will stop the fn() process and immediately return if the checkFn
- * returns truthy.
+ * `useEscape` will stop the `fn()` process and immediately return if the
+ * checkFn returns truthy.
  * @param {function} checkFn
  */
 export default function useEscape(checkFn) {

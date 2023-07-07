@@ -12,12 +12,12 @@ import addAfterAllHook from '../hooks/addAfterAllHook.mjs';
  * @param {function} mapFn
  * @param {function} reduceFn
  * @example
- *     const data = foray([1, 2, 3, 4]);
- *     const sumOfSquares = data.reduceMapped(
- *         x => x * x, // square each number
- *         (acc, x) => acc + x // sum the squares
- *     );
- *     console.log(sumOfSquares); // Outputs 30
+ * const data = foray([1, 2, 3, 4]);
+ * const sumOfSquares = data.reduceMapped(
+ *   x => x * x, // square each number
+ *   (acc, x) => acc + x // sum the squares
+ * );
+ * console.log(sumOfSquares); // Outputs 30
  */
 const reduceMapped = fn(
   cohesive(

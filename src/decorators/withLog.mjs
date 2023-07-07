@@ -5,12 +5,12 @@
  * @param {function} [logFn=(v)=>console.log(v)]
  *
  * @example
- *     fn(
- *       cohesive(
- *         withLog(makeWithArg(useMapper, 0)),
- *         useEscape(v => v),
- *       )
- *     );
+ * fn(
+ *   cohesive(
+ *     withLog(makeWithArg(useMapper, 0)),
+ *     useEscape(v => v),
+ *   )
+ * );
  */
 export default function withLog(atomFn, logFn = (v) => console.log(v)) {
   return function _withLog(item) {

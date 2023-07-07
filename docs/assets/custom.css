@@ -96,3 +96,10 @@ h2 { color: #fff; }
   top: 0;
   right: 0;
 }
+
+code {
+  border-radius: 0.4em;
+  background: #ebeaea;
+  color: #54a4b3;
+  padding: 2px;
+}

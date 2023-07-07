@@ -8,7 +8,10 @@ export default function cohesive(...atoms) {
   return function _cohesive(item) {
     return atoms.reduce((result, atomFn) => {
       const output = atomFn.call(this, result);
-      this && this.setOutput(output); // eslint-disable-line no-unused-expressions
+
+      if (this && output !== undefined) {
+        this.setOutput(output);
+      }
 
       return output;
     }, item);

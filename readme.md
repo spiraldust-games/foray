@@ -160,9 +160,12 @@ Foray would not be possible, built as it is, without all the hard work from:
 - ESLint
 - Git and Github
 - Jest
+- Documentation.js
 - renamer
+- replace-in-file
 - rimraf
 - cpy-cli
+- html-minifier
 
 Thank you 🙇‍♀️
 

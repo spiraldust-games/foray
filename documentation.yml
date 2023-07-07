@@ -10,8 +10,9 @@ toc:
   - fn
   - name: Atoms
     description: Atoms are simple functions that can be combined to make more complicated logic.
-  - useLog
+  - useChunk
   - useEscape
+  - useLog
   - useMapper
   - useReducer
   - useSlice
@@ -48,3 +49,7 @@ toc:
   - getReversed
   - reduceMapped
   - set
+  - toChunked
+  - name: Utils
+    description: Every library has items that don't quite fit, somewhere.
+  - forno
